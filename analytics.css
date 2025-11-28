@@ -1,0 +1,878 @@
+/* =======================================
+-- GLOBAL & THEME VARIABLES -- 
+=======================================
+*/
+:root {
+  --primary-color: #74b9ff; /* Light Blue/Violet (from gradient start) */
+  --secondary-color: #fd79a8; /* Pink/Red (from gradient end) */
+  --text-dark: #000;
+  --text-light: #fff;
+  --link-hover: #3498db;
+  --button-accent: #6c5ce7; /* Purple for Login Button */
+  --button-secondary: #00cec9; /* Teal for Login Button */
+  --footer-bg-dark: #22303e; /* Used for Copyright Bar */
+  --background-light: #f7f7f7; /* Used for dashboard/product card background */
+  --radius-default: 8px;
+  --max-width: 1200px;
+  --navbar-height: 80px;
+}
+
+/* -------------------------------------- */
+/* 1. Global Reset and Base Styles */
+/* -------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Poppins", sans-serif;
+  background-color: #fff;
+  /* FIX 1: Remove top padding from body; dashboard-container handles spacing */
+  padding-top: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+/* Reusable Container & Spacer */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.header-spacer {
+  height: var(--navbar-height); /* Matches fixed header height */
+}
+
+/* =======================================
+-- 2. NAVBAR STYLING (V2) -- 
+=======================================
+*/
+.navbar-v2 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+}
+
+.logo img {
+  width: 110px;
+  cursor: pointer;
+}
+
+/* Hamburger Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 35px;
+  height: 28px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: var(--text-dark);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+/* Navigation Links and Dropdowns (Desktop) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-links li ul.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-default);
+  min-width: 150px;
+  padding: 5px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links li:hover > ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.nav-links li ul.dropdown-menu a {
+  color: var(--text-light);
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s;
+}
+
+.nav-links li ul.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Login Button */
+.login-btn button {
+  padding: 8px 18px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--button-secondary),
+    var(--button-accent)
+  );
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =======================================
+-- 3. FOOTER STYLING --
+=======================================
+*/
+.main-footer {
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  color: var(--text-dark);
+  padding-top: 60px;
+  font-family: "Inter", sans-serif;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  /* FIX 3: Ensure footer clears the absolute positioned elements above it */
+  position: static; /* Corrected: was relative in original, static is better for natural flow */
+  z-index: 100;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-column h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--link-hover);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.logo-image-placeholder {
+  width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.address,
+.contact-info {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.contact-info a {
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-info a:hover {
+  color: var(--link-hover);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  color: var(--text-dark);
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: var(--button-secondary);
+}
+
+.newsletter-section p {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-default);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.email-input::placeholder {
+  color: var(--text-color-muted);
+}
+
+.submit-button {
+  padding: 12px 20px;
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius-default);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.submit-button:hover {
+  background-color: var(--primary-color);
+}
+
+.copyright-bar {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* =======================================
+-- 4. ANALYTICS DASHBOARD STYLING -- 
+=======================================
+*/
+
+/* --- Dashboard Layout --- */
+.dashboard-container {
+  /* FIX 1: Remove flex and let the main content stack naturally below the fixed navbar.
+       The sidebar remains fixed and floats over the background. */
+  display: block;
+  min-height: 100vh;
+  padding-top: var(
+    --navbar-height
+  ); /* This correctly clears the fixed navbar */
+}
+
+/* Sidebar Styling - No change needed here, fixed positioning is intentional */
+.sidebar {
+  /* ... (KEEP ALL EXISTING SIDEBAR STYLES) ... */
+  width: 250px;
+  background-color: #2c3e50;
+  color: var(--text-light);
+  padding: 20px 0;
+  flex-shrink: 0;
+  position: fixed;
+  top: var(--navbar-height);
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 900;
+}
+
+/* Main Content Area */
+.main-content {
+  flex-grow: 1;
+  padding: 20px 30px;
+  background-color: var(--background-light);
+
+  /* FIX 2: Only apply the margin-left to make space for the fixed sidebar.
+       The content must flow fully to push the footer down. */
+  margin-left: 250px;
+  margin-top: 0;
+  position: relative;
+
+  /* NEW: Add padding-bottom to ensure enough space for the footer to clear */
+  padding-bottom: 80px;
+}
+
+/* =======================================
+-- 3. FOOTER STYLING (Redundant section cleaned up) --
+=======================================
+*/
+.main-footer {
+  /* ... (KEEP ALL EXISTING FOOTER STYLES) ... */
+
+  /* FIX 3: Removed redundant and conflicting footer position styles */
+  position: static;
+  z-index: auto;
+}
+
+/* =======================================
+-- 6. MOBILE/RESPONSIVE STYLES (DASHBOARD) -- 
+=======================================
+*/
+@media (max-width: 992px) {
+  /* Sidebar is hidden, so main content takes full width */
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    margin-left: 0; /* Content takes full width */
+  }
+  .dashboard-container {
+    padding-top: var(--navbar-height); /* Ensure main content clears navbar */
+  }
+  /* ... (rest of media queries remain) ... */
+}
+
+.sidebar .logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-menu li a {
+  display: block;
+  padding: 15px 25px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.nav-menu li a i {
+  margin-right: 10px;
+}
+
+.nav-menu li.active a,
+.nav-menu li a:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-dark);
+}
+
+/* Main Content Area */
+/* Overwritten from earlier section, keeping for completeness */
+.main-content {
+  flex-grow: 1;
+  padding: 20px 30px;
+  background-color: var(--background-light);
+
+  /* FIX 5: Shift content over by sidebar width */
+  margin-left: 250px;
+  /* FIX 6: Remove fixed top margin, let it flow below navbar via dashboard-container padding */
+  margin-top: 0;
+
+  position: relative;
+}
+
+/* Header within Main Content */
+.main-content .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 20px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+.main-content .header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--text-color-muted);
+}
+.user-profile i {
+  font-size: 1.5rem;
+  margin-left: 10px;
+  color: var(--primary-color);
+}
+
+/* Key Metrics Grid */
+.section-card-grid {
+  margin-bottom: 30px;
+}
+
+.section-card-grid h2,
+.half-card h2,
+.section-card-full h2 {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  border-left: 4px solid var(--secondary-color);
+  padding-left: 10px;
+}
+
+.key-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.metric-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+}
+
+.metric-card i {
+  grid-row: 1 / 3;
+  font-size: 2.5rem;
+  margin-right: 15px;
+}
+.icon-analytics {
+  color: var(--button-accent);
+}
+.icon-orders {
+  color: var(--secondary-color);
+}
+.icon-users {
+  color: var(--primary-color);
+}
+.icon-messages {
+  color: var(--link-hover);
+}
+
+.metric-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  grid-column: 2 / 3;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: var(--text-color-muted);
+  grid-column: 2 / 3;
+}
+
+.metric-trend {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 10px;
+  align-self: center;
+}
+.metric-trend.success {
+  color: #28a745;
+}
+.metric-trend.danger {
+  color: #dc3545;
+}
+.metric-trend.neutral {
+  color: var(--text-color-muted);
+}
+
+/* Two-Column Breakdown (Tables) */
+.content-breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.half-card,
+.section-card-full {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Table Styling */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+.data-table th,
+.data-table td {
+  padding: 12px 0;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+.data-table th {
+  color: var(--text-color-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.status.active {
+  background-color: #d4edda;
+  color: #28a745;
+}
+.status.inactive {
+  background-color: #f8d7da;
+  color: #dc3545;
+}
+
+.view-all {
+  color: var(--link-hover);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Full Width Section (Messages) */
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.message-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed #eee;
+}
+.message-sender {
+  font-weight: 600;
+  flex-basis: 30%;
+}
+.message-snippet {
+  color: var(--text-color-muted);
+  flex-basis: 50%;
+}
+.message-time {
+  font-size: 0.8rem;
+  color: #999;
+  flex-basis: 15%;
+  text-align: right;
+}
+.message-action {
+  color: var(--link-hover);
+  cursor: pointer;
+}
+
+/* =======================================
+-- 5. MOBILE/RESPONSIVE STYLES (COMBINED) -- 
+=======================================
+*/
+
+/* --- Navbar Mobile Styles (Below 768px) --- */
+@media (max-width: 768px) {
+  /* Navbar fixed height adjustment for mobile view */
+  .navbar-v2 {
+    padding: 12px 20px;
+  }
+  .navbar-v2 .hamburger {
+    display: flex;
+  }
+  .navbar-v2 .nav-links {
+    display: none;
+    /* FIX: Ensure the dropdown menu is positioned absolutely/fixed to take full width */
+    position: absolute;
+    top: var(--navbar-height); /* Align menu precisely below the fixed navbar */
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* New styles for the collapsed menu */
+    background-color: rgba(30, 30, 30, 0.98); /* Solid dark background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column; /* Stack links vertically */
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    /* Set max-height to ensure it covers the screen if necessary */
+    max-height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+  }
+
+  /* FIX: Explicitly set display block/flex and color for the links within the mobile menu */
+  .navbar-v2 .nav-links li {
+    width: 100%; /* Full width list items */
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .navbar-v2 .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .navbar-v2 .nav-links a {
+    color: var(--text-light); /* White text for contrast on dark background */
+    padding: 15px 0;
+    width: 100%;
+    display: block;
+    font-size: 18px;
+  }
+  .navbar-v2 .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  /* Fix dropdowns within the mobile menu */
+  .nav-links li ul.dropdown-menu {
+    position: static; /* Stack vertically, don't float */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+    width: 100%;
+    padding: 0;
+  }
+  .nav-links li:hover > ul.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    animation: none;
+  }
+  .nav-links li ul.dropdown-menu a {
+    padding: 10px 30px;
+    font-size: 16px;
+  }
+
+  .navbar-v2 .nav-links.show {
+    display: flex; /* Activate vertical layout */
+  }
+  .navbar-v2 .login-btn {
+    display: none; /* Hide desktop login button in favor of adding it inside the menu if needed */
+  }
+
+  /* --- Footer Mobile Styles (Tablet) --- */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand-info {
+    grid-column: span 2;
+  }
+  .newsletter-section {
+    grid-column: span 2;
+  }
+
+  /* --- Dashboard Mobile Styles (Tablet - Sidebar Hidden) --- */
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    margin-left: 0;
+    margin-top: 0; /* Handled by dashboard-container padding */
+  }
+  .dashboard-container {
+    display: block;
+    padding-top: 0;
+  }
+
+  /* Stack breakdown sections */
+  .content-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  /* Metrics grid uses 2 columns on tablet */
+  .key-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Mobile Phone Styles (Below 576px) --- */
+@media (max-width: 576px) {
+  .main-content {
+    padding: 15px;
+  }
+  .main-content .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .main-content .header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  /* Metrics grid uses 1 column on small phone */
+  .key-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Messages stack */
+  .message-item {
+    flex-wrap: wrap;
+  }
+  .message-sender,
+  .message-snippet {
+    flex-basis: 100%;
+  }
+
+  /* Footer full stack */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .brand-info {
+    grid-column: span 1;
+  }
+  .newsletter-section {
+    grid-column: span 1;
+  }
+  .newsletter-form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .email-input,
+  .submit-button {
+    width: 100%;
+  }
+}
+
+/* -------------------------------------- */
+/* 7. Desktop Restoration */
+/* -------------------------------------- */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    /* Reset mobile-specific styles */
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    max-height: none;
+    overflow-y: visible;
+    padding: 0;
+    box-shadow: none;
+  }
+  .nav-links li {
+    width: auto;
+    border-bottom: none;
+  }
+  .nav-links a {
+    color: var(--text-dark); /* Restore desktop text color */
+    font-size: 16px;
+  }
+  /* Restore desktop dropdown menu styles */
+  .nav-links li ul.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    background-color: rgba(30, 30, 30, 0.95);
+  }
+  .nav-links li ul.dropdown-menu a {
+    color: var(--text-light);
+  }
+
+  .hamburger {
+    display: none !important;
+  }
+  .login-btn {
+    display: block;
+  }
+}

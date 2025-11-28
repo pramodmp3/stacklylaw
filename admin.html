@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="dashboard-wrapper">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <h2>AppCo Admin</h2>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="nav-item active">
+              <a href="#">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon"
+                >
+                  <path d="M3 3v18h18" />
+                  <path d="M18.5 6.5L13 12 9 8 5.5 11.5" />
+                </svg>
+                Analytics
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path
+                    d="M23 21v-2a4 4 0 0 0-3-3.87m-2-5.74A4 4 0 0 0 16 3a4 4 0 0 0-3 1.87"
+                  />
+                </svg>
+                Users
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon"
+                >
+                  <path
+                    d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M12 6v14"
+                  />
+                </svg>
+                Orders
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Messages
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="main-content">
+        <header class="topbar">
+          <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+          <div class="search-bar">
+            <input type="text" placeholder="Search dashboard..." />
+          </div>
+          <div class="user-profile">
+            <span class="user-name">Admin User</span>
+            <img
+              src="https://placehold.co/40x40/3498db/ffffff?text=AU"
+              alt="User Avatar"
+              class="avatar"
+            />
+          </div>
+        </header>
+
+        <main class="dashboard-body">
+          <h1>Dashboard Overview</h1>
+
+          <section class="summary-grid">
+            <div class="card summary-card analytics-bg">
+              <h3>Total Revenue</h3>
+              <p class="data">$45,231.89</p>
+              <span class="trend up">+12.5%</span>
+            </div>
+            <div class="card summary-card users-bg">
+              <h3>New Users</h3>
+              <p class="data">2,400</p>
+              <span class="trend down">-3.1%</span>
+            </div>
+            <div class="card summary-card orders-bg">
+              <h3>Pending Orders</h3>
+              <p class="data">47</p>
+              <span class="trend up">+5 orders</span>
+            </div>
+            <div class="card summary-card messages-bg">
+              <h3>Support Tickets</h3>
+              <p class="data">5</p>
+              <span class="trend down">2 closed</span>
+            </div>
+          </section>
+
+          <section class="detail-grid">
+            <div class="card table-card">
+              <h2>Recent Users</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Alice</td>
+                    <td>alice@mail.com</td>
+                    <td>Active</td>
+                  </tr>
+                  <tr>
+                    <td>Bob</td>
+                    <td>bob@mail.com</td>
+                    <td>Pending</td>
+                  </tr>
+                  <tr>
+                    <td>Charlie</td>
+                    <td>charlie@mail.com</td>
+                    <td>Active</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="view-all">View All Users &rarr;</a>
+            </div>
+
+            <div class="card table-card">
+              <h2>Recent Orders</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#1001</td>
+                    <td>Analytics Pro</td>
+                    <td>$99.00</td>
+                  </tr>
+                  <tr>
+                    <td>#1002</td>
+                    <td>CRM Basic</td>
+                    <td>$49.00</td>
+                  </tr>
+                  <tr>
+                    <td>#1003</td>
+                    <td>DevOps Plus</td>
+                    <td>$199.00</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="view-all">View All Orders &rarr;</a>
+            </div>
+          </section>
+
+          <section class="message-section">
+            <div class="card">
+              <h2>Pending Messages</h2>
+              <ul class="message-list">
+                <li>
+                  <strong>Alice (Billing):</strong> "My subscription failed to
+                  renew..."
+                </li>
+                <li>
+                  <strong>Charlie (Tech):</strong> "Issue logging into the
+                  DevOps tool."
+                </li>
+                <li>
+                  <strong>Mike (Feedback):</strong> "The new feature is great
+                  but noticed a bug."
+                </li>
+              </ul>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // JS logic for toggling the sidebar on mobile/small screens
+      const menuToggle = document.getElementById("menu-toggle");
+      const sidebar = document.getElementById("sidebar");
+      const mainContent = document.querySelector(".main-content");
+
+      if (menuToggle && sidebar && mainContent) {
+        menuToggle.addEventListener("click", () => {
+          sidebar.classList.toggle("collapsed");
+          mainContent.classList.toggle("expanded");
+        });
+      }
+    </script>
+  </body>
+</html>

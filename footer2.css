@@ -1,0 +1,354 @@
+/* CSS Variables for a Dark, Professional Footer Theme */
+:root {
+  --footer-bg: #2c3e50; /* Deep Indigo/Dark Gray */
+  --footer-text: #000; /* Light Off-White */
+  --link-hover: #3498db; /* Bright Blue Accent */
+  --button-color: #f39c12; /* Gold/Orange Accent for CTA */
+  --copyright-bg: #22303e;
+  --radius-default: 8px;
+}
+
+/* Base Styles */
+.main-footer {
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  color: var(--footer-text);
+  padding-top: 60px;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Footer Grid Layout --- */
+.footer-grid {
+  display: grid;
+  /* Define 4 columns for desktop */
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-column h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--footer-text);
+  border-bottom: 2px solid var(--link-hover);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* --- Column 1: Brand Info --- */
+.brand-info {
+  font-size: 0.95rem;
+}
+
+.logo-image-placeholder {
+  /* Style for the placeholder image/logo */
+  width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+  filter: invert(
+    1
+  ); /* Example: turn a dark logo light for the dark background */
+}
+
+.address,
+.contact-info {
+  margin-bottom: 15px;
+}
+
+.contact-info a {
+  color: var(--footer-text);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-info a:hover {
+  color: var(--link-hover);
+}
+
+/* --- Columns 2 & 3: Links --- */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--footer-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.legal-links {
+  margin-top: 20px;
+}
+
+/* --- Social Media SVGs --- */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  color: var(--footer-text);
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: var(--link-hover);
+}
+
+/* --- Column 4: Newsletter --- */
+.newsletter-section p {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-default);
+  background-color: #3c506a; /* Slightly lighter background for input */
+  color: var(--footer-text);
+  font-size: 1rem;
+}
+
+.email-input::placeholder {
+  color: #aab9c4;
+}
+
+.submit-button {
+  padding: 12px 20px;
+  background-color: var(--button-color);
+  color: var(--dark-text);
+  border: none;
+  border-radius: var(--radius-default);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.submit-button:hover {
+  background-color: #e67e22; /* Slightly darker orange on hover */
+}
+
+/* --- Copyright Bar --- */
+.copyright-bar {
+  background-color: var(--copyright-bg);
+  padding: 20px 0;
+  border-top: 1px solid #3c506a;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .footer-grid {
+    /* Change to 2 columns on tablet */
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand-info {
+    grid-column: span 2; /* Brand info spans both columns */
+    border-bottom: 1px solid #3c506a;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .newsletter-section {
+    grid-column: span 2; /* Newsletter spans both columns */
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-grid {
+    /* Change to 1 column on mobile */
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  .footer-column h4 {
+    display: block;
+    border-bottom: 2px solid var(--link-hover);
+    width: 100%;
+    text-align: center;
+  }
+  .brand-info {
+    grid-column: span 1;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .social-links {
+    justify-content: center;
+  }
+  .newsletter-form {
+    flex-direction: column;
+  }
+  .newsletter-section {
+    grid-column: span 1;
+  }
+}
+/* --- Extra Mobile Responsive Enhancements --- */
+
+/* For small devices (max-width: 480px) */
+@media (max-width: 480px) {
+  section {
+    padding: 60px 5%;
+  }
+
+  .contact-hero {
+    padding: 80px 5% 60px 5%;
+  }
+
+  .contact-hero h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  .contact-hero p {
+    font-size: 1rem;
+  }
+
+  .main-contact-section {
+    padding: 60px 5%;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .contact-form-card,
+  .map-container-card {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .contact-form-card h2,
+  .map-container-card h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .form-group label {
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .submit-button {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .map-wrapper {
+    padding-bottom: 80%;
+    border-radius: 8px;
+  }
+
+  .contact-details p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .footer {
+    padding: 40px 5%;
+  }
+
+  .footer-logo h3 {
+    font-size: 1.8rem;
+  }
+
+  .footer-col h4 {
+    font-size: 1rem;
+  }
+
+  .footer-newsletter input[type="email"] {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .footer-newsletter button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* For very small screens (max-width: 360px) */
+@media (max-width: 360px) {
+  .contact-hero {
+    padding: 70px 5% 50px 5%;
+  }
+
+  .contact-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .contact-hero p {
+    font-size: 0.9rem;
+  }
+
+  .contact-form-card,
+  .map-container-card {
+    padding: 15px;
+  }
+
+  .contact-form-card h2,
+  .map-container-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    font-size: 0.95rem;
+  }
+
+  .footer-logo h3 {
+    font-size: 1.6rem;
+  }
+
+  .footer-col h4 {
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    font-size: 0.85rem;
+  }
+}

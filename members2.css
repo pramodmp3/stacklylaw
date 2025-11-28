@@ -1,0 +1,603 @@
+/* =======================================
+-- GLOBAL & THEME VARIABLES -- 
+=======================================
+*/
+:root {
+  --primary-color: #74b9ff; /* Light Blue/Violet */
+  --secondary-color: #fd79a8; /* Pink/Red */
+  --text-dark: #000;
+  --text-light: #fff;
+  --link-hover: #3498db;
+  --button-accent: #6c5ce7; /* Purple */
+  --button-secondary: #00cec9; /* Teal */
+  --background-light: #f7f7f7; /* Used for card background */
+  --radius-default: 8px;
+  --max-width: 1200px;
+  --navbar-height: 80px;
+  --text-color-muted: #666;
+}
+
+/* -------------------------------------- */
+/* 1. Global Reset and Base Styles */
+/* -------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding-top: var(--navbar-height); /* Space for fixed header */
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.hero-section {
+  padding-top: 100px !important;
+  margin-top: -80px !important;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+/* Reusable Container & Spacer */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.header-spacer {
+  height: var(--navbar-height); /* Matches fixed header height */
+}
+
+/* Global Button Style */
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 700;
+  border-radius: 30px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  position: relative;
+  display: block;
+  margin: 0 auto 40px auto;
+  width: fit-content;
+}
+
+/* =======================================
+-- 2. NAVBAR STYLES --
+=======================================
+*/
+.navbar-v2 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+}
+
+.logo img {
+  width: 110px;
+  cursor: pointer;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 35px;
+  height: 28px;
+  z-index: 1001;
+}
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: var(--text-dark);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.nav-links li {
+  position: relative;
+}
+.nav-links a {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+/* Desktop Dropdown Styles */
+.nav-links li ul.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-default);
+  min-width: 150px;
+  padding: 5px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+.nav-links li:hover > ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease-in-out;
+}
+.nav-links li ul.dropdown-menu a {
+  color: var(--text-light);
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s;
+}
+.nav-links li ul.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.login-btn button {
+  padding: 8px 18px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+.login-btn button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--button-secondary),
+    var(--button-accent)
+  );
+  transform: scale(1.05);
+}
+
+/* =======================================
+-- 3. FOOTER STYLES --
+=======================================
+*/
+.main-footer {
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  color: var(--text-dark);
+  padding-top: 60px;
+  font-family: "Inter", sans-serif;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-column h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--link-hover);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.logo-image-placeholder {
+  width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  color: var(--text-dark);
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: var(--button-secondary);
+}
+
+.copyright-bar {
+  background-color: rgba(0, 0, 0, 0.05); /* Light transparency */
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* --- Newsletter Form Styles (Copied for Footer) --- */
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-default);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.submit-button {
+  padding: 12px 20px;
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius-default);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+/* =======================================
+-- 4. TEAM PAGE SPECIFIC STYLES --
+=======================================
+*/
+
+/* --- Hero Section --- */
+.hero-section {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--button-accent)
+  );
+  color: var(--text-light);
+  padding: 100px 20px 80px;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- Team Members Section --- */
+.team-members-section {
+  padding: 80px 20px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.team-members-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 50px;
+}
+
+.members-grid {
+  display: grid;
+  /* Forces 3 columns on desktop for perfect alignment */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.member-card {
+  background-color: var(--background-light);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  text-align: center;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+}
+
+.member-photo {
+  width: 100%;
+  height: 300px; /* Consistent height for image crop */
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+.member-card:hover .member-photo {
+  opacity: 0.85;
+}
+
+.member-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 15px 0 5px;
+}
+
+.member-title {
+  font-size: 0.95rem;
+  color: var(--button-secondary);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.btn-know-more {
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: var(--button-accent);
+  color: var(--text-light);
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
+}
+
+.btn-know-more:hover {
+  background-color: var(--primary-color);
+}
+
+/* =======================================
+-- 5. RESPONSIVENESS (Team Page Specific) --
+=======================================
+*/
+
+@media (max-width: 1024px) {
+  /* --- NAVBAR FIX: Enforce vertical overlay on mobile --- */
+  .navbar-v2 {
+    padding: 12px 20px;
+  }
+  .navbar-v2 .hamburger {
+    display: flex;
+  }
+  .navbar-v2 .nav-links {
+    display: none;
+    /* FIX: Set up the menu overlay */
+    position: absolute;
+    top: var(--navbar-height); /* Align menu precisely below the fixed navbar */
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    background: linear-gradient(
+      180deg,
+      rgba(116, 185, 255, 0.95),
+      rgba(253, 121, 168, 0.95)
+    );
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    flex-direction: column; /* FIX: Stack links vertically */
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    z-index: 999;
+  }
+  /* Style individual links inside the mobile menu */
+  .navbar-v2 .nav-links li {
+    width: 90%;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 5px 0;
+  }
+  .navbar-v2 .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .navbar-v2 .nav-links a {
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 15px 0;
+    width: 100%;
+    display: block;
+    font-size: 18px;
+  }
+  .nav-links li ul.dropdown-menu {
+    position: static;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .nav-links li ul.dropdown-menu a {
+    color: var(--text-dark);
+  }
+
+  .navbar-v2 .nav-links.show {
+    display: flex; /* ACTIVATES THE FIXED VERTICAL MENU */
+  }
+
+  .navbar-v2 .login-btn {
+    display: none;
+  }
+  /* --- END NAVBAR FIX --- */
+
+  /* Footer responsiveness (Tablet) */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .brand-info,
+  .newsletter-section {
+    grid-column: span 2;
+  }
+
+  /* TEAM PAGE: Tablet - Change to 2 columns */
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  .team-members-section h2 {
+    font-size: 2rem;
+  }
+  .members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .member-photo {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* FOOTER RESPONSIVENESS */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* TEAM PAGE: Mobile - Hero resize */
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Footer full stack */
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* TEAM PAGE: Mobile - Change to 1 column */
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+  .member-photo {
+    height: 400px;
+  }
+
+  /* Footer Newsletter Fix */
+  .newsletter-form {
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .email-input,
+  .submit-button {
+    width: 100%;
+  }
+}
+
+/* -------------------------------------- */
+/* 6. Desktop Restoration */
+/* -------------------------------------- */
+@media (min-width: 1025px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    /* Reset mobile-specific backgrounds and overrides */
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    box-shadow: none;
+    z-index: auto;
+  }
+  .nav-links li {
+    width: auto;
+    border-bottom: none;
+  }
+  .nav-links a {
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+  /* Restore desktop dropdown menu styles */
+  .nav-links li ul.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    background-color: rgba(30, 30, 30, 0.95);
+  }
+  .nav-links li ul.dropdown-menu a {
+    color: var(--text-light);
+  }
+
+  .hamburger {
+    display: none !important;
+  }
+  .login-btn {
+    display: block;
+  }
+}

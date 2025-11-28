@@ -1,0 +1,236 @@
+/* --- CSS VARIABLES FOR THEME --- */
+:root {
+  --primary-color: #0a1931; /* Deep Navy Blue */
+  --accent-color: #ffd700; /* Vibrant Gold */
+  --text-color-light: #f0f0f0;
+  --text-color-muted: #b0b0b0;
+  --hover-bg: #1a345b;
+  --transition-speed: 0.3s;
+}
+
+/* --- FOOTER BASE LAYOUT (Flowing/Non-Sticky) --- */
+#main-footer {
+  /* Position removed - the footer will naturally flow to the end of the page content */
+  width: 100%;
+  background-color: var(--primary-color);
+  box-shadow: 0 -8px 15px rgba(0, 0, 0, 0.4); /* Shadow on top edge */
+  font-family: "Inter", sans-serif;
+  color: var(--text-color-light);
+  padding-top: 30px;
+  padding-bottom: 0; /* Handled by footer-bottom */
+  margin-top: 50px; /* Add some margin above the footer to separate it from the last section */
+}
+
+/* Spacer is removed as the footer is no longer fixed */
+
+.footer-content-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px 30px 20px;
+  display: grid;
+  gap: 30px;
+  /* Unique Grid Layout: 5 columns for desktop */
+  grid-template-columns: 2fr 1fr 1fr 2fr 2fr;
+}
+
+/* --- SECTION STYLING --- */
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+/* Creative Underline for Titles */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background-color: var(--accent-color);
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+/* --- LOGO & BRANDING --- */
+.logo-area {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: color var(--transition-speed);
+}
+
+.logo-img {
+  height: 150px;
+  width: 100px;
+  border-radius: 4px;
+  margin-right: 10px;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+/* --- LINKS (Quick & Legal) --- */
+.links-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links-col li {
+  margin-bottom: 8px;
+}
+
+.links-col a {
+  color: var(--text-color-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color var(--transition-speed);
+}
+
+.links-col a:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* --- CONTACT INFO --- */
+.contact-info p,
+.contact-info address {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: var(--text-color-muted);
+}
+.contact-info a {
+  color: var(--text-color-muted);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+.contact-info a:hover {
+  color: var(--accent-color);
+}
+
+/* --- SOCIAL MEDIA (Colorful/Unique) --- */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  fill: var(--text-color-light);
+  transition: fill var(--transition-speed), transform var(--transition-speed);
+}
+
+.social-links a:hover .social-icon {
+  fill: var(--accent-color);
+  transform: scale(1.1);
+}
+
+/* --- NEWSLETTER FORM (Creative) --- */
+#newsletter-form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#email-field {
+  padding: 12px;
+  border: 2px solid var(--hover-bg);
+  border-radius: 6px;
+  background-color: var(--hover-bg);
+  color: var(--text-color-light);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed);
+}
+
+#email-field:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.subscribe-btn {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed);
+}
+
+.subscribe-btn:hover {
+  background-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.8);
+}
+
+.message-text {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  min-height: 18px; /* Prevents layout shift */
+}
+
+/* --- COPYRIGHT SECTION --- */
+.footer-bottom {
+  border-top: 1px solid var(--hover-bg);
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-color-muted);
+}
+
+/* --- RESPONSIVENESS (Mobile/Tablet) --- */
+@media (max-width: 1024px) {
+  .footer-content-wrap {
+    /* Adjust grid for smaller screens (3 columns) */
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content-wrap {
+    /* Stack to 2 columns for tablets/large phones */
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .brand-info {
+    grid-column: span 2; /* Logo takes full width on top */
+  }
+  /* Footer spacer rules removed */
+}
+
+@media (max-width: 500px) {
+  .footer-content-wrap {
+    /* Stack to 1 column for mobile */
+    grid-template-columns: 1fr;
+    padding-bottom: 20px;
+  }
+  .brand-info {
+    grid-column: span 1;
+    text-align: center;
+  }
+  .logo-area {
+    justify-content: center;
+  }
+  .section-title::after {
+    margin: 5px auto 0 auto; /* Center title underline */
+  }
+  .links-col,
+  .contact-info,
+  .social-newsletter {
+    text-align: center;
+  }
+  .social-links {
+    justify-content: center;
+  }
+  /* Footer spacer rules removed */
+}

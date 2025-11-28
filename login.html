@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | STACKLY Law Firm</title>
+
+    <link rel="stylesheet" href="login.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="login-main">
+      <div class="login-container">
+        <!-- Left Panel: Brand / Visual Element (Creative, Navy Background) -->
+        <div class="login-visual-panel">
+          <div class="visual-content">
+            <!-- Logo/Branding Title -->
+            <a href="index.html" class="visual-logo">
+              <!-- Placeholder for Logo Image -->
+              <img
+                src=""
+                onerror="this.style.display='none';"
+                alt="STACKLY Law Logo"
+                class="logo-img"
+              />
+              <span class="logo-text">STACKLY</span>
+            </a>
+
+            <h2>Access Your Secure Client Portal</h2>
+            <p>
+              Where legal strategy meets digital precision. Please log in to
+              view your documents and case updates.
+            </p>
+
+            <div class="quote-box">
+              <p class="quote-text">"Confidence comes from clarity."</p>
+              <p class="quote-author">- The STACKLY Team</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel: Login Form -->
+        <div class="login-form-panel">
+          <h1 class="form-title">Client Login</h1>
+
+          <form id="login-form" action="./404.html">
+            <div class="form-group">
+              <label for="email">Email (Username)</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="your.name@client.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="••••••••"
+              />
+            </div>
+
+            <a href="./404.html" class="forgot-link">Forgot Password?</a>
+
+            <button type="submit" class="login-btn">Log In Securely</button>
+          </form>
+
+          <div class="divider">
+            <span class="divider-text">OR</span>
+          </div>
+
+          <!-- New User / Signup Section -->
+          <div class="signup-section">
+            <p>New to STACKLY?</p>
+            <a href="./signup.html" class="signup-btn"> Create New Account </a>
+          </div>
+
+          <p class="security-note">
+            Your security is our priority. All connections are encrypted.
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

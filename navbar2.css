@@ -1,0 +1,255 @@
+/* -------------------------------------- */
+/* 1. Global Reset and Base Styles */
+/* -------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+}
+
+/* -------------------------------------- */
+/* 2. Navbar Styling (Desktop & Shared) */
+/* -------------------------------------- */
+.navbar-v2 {
+  /* Changed from .navbar */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+}
+
+.logo img {
+  width: 110px;
+  cursor: pointer;
+}
+
+/* -------------------------------------- */
+/* 3. Hamburger Styling */
+/* -------------------------------------- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 35px;
+  height: 28px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: #000;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+/* -------------------------------------- */
+/* 4. Navigation Links and Dropdowns (Desktop) */
+/* -------------------------------------- */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-links li ul.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  min-width: 150px;
+  padding: 5px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links li:hover > ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.nav-links li ul.dropdown-menu a {
+  color: #fff;
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s;
+}
+
+.nav-links li ul.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Login Button */
+.login-btn button {
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn button:hover {
+  background: linear-gradient(135deg, #00cec9, #6c5ce7);
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------- */
+/* 5. Mobile Styles */
+/* -------------------------------------- */
+@media (max-width: 768px) {
+  .navbar-v2 .hamburger {
+    /* Added .navbar-v2 */
+    display: flex;
+  }
+
+  .navbar-v2 .nav-links {
+    /* Added .navbar-v2 */
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: linear-gradient(
+      135deg,
+      rgba(116, 185, 255, 0.95),
+      rgba(253, 121, 168, 0.95)
+    );
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    z-index: 999;
+  }
+
+  .navbar-v2 .nav-links.show {
+    /* Added .navbar-v2 */
+    display: flex;
+    list-style: none;
+  }
+
+  .navbar-v2 .nav-links li {
+    /* Added .navbar-v2 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    list-style: none;
+  }
+
+  .navbar-v2 .nav-links li:last-child {
+    /* Added .navbar-v2 */
+    border-bottom: none;
+    list-style: none;
+  }
+
+  .navbar-v2 .nav-links li a {
+    /* Added .navbar-v2 */
+    display: block;
+    padding: 12px 16px;
+    color: #000;
+  }
+
+  .navbar-v2 .nav-links li ul.dropdown-menu {
+    /* Added .navbar-v2 */
+    display: none;
+    position: static;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar-v2 .nav-links li ul.dropdown-menu.show {
+    /* Added .navbar-v2 */
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+  }
+
+  .navbar-v2 .nav-links li ul.dropdown-menu a {
+    /* Added .navbar-v2 */
+    color: #333;
+    padding-left: 30px;
+  }
+
+  .navbar-v2 .login-btn {
+    /* Added .navbar-v2 */
+    display: none;
+  }
+}
+
+/* -------------------------------------- */
+/* 6. Desktop Restoration */
+/* -------------------------------------- */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+  }
+  .hamburger {
+    display: none !important;
+  }
+  .login-btn {
+    display: block;
+  }
+}

@@ -1,0 +1,647 @@
+/* =======================================
+-- GLOBAL & THEME VARIABLES -- 
+=======================================
+*/
+:root {
+  /* Define primary colors based on the Navbar/Footer gradients */
+  --primary-color: #74b9ff; /* Light Blue/Violet (from gradient start) */
+  --secondary-color: #fd79a8; /* Pink/Red (from gradient end) */
+  --text-dark: #000;
+  --text-light: #fff;
+  --link-hover: #3498db;
+  --button-accent: #6c5ce7; /* Purple for Login Button */
+  --button-secondary: #00cec9; /* Teal for Login Button */
+  --footer-bg-dark: #22303e; /* Used for Copyright Bar */
+  --background-light: #f7f7f7; /* Used for product card background */
+  --radius-default: 8px;
+  --max-width: 1200px;
+}
+
+/* -------------------------------------- */
+/* 1. Global Reset and Base Styles */
+/* -------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Poppins", sans-serif;
+  background-color: #fff;
+  padding-top: 80px; /* Space for fixed header */
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.hero-section {
+  padding-top: 100px !important;
+  margin-top: -80px !important;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+/* Reusable Container & Spacer */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.header-spacer {
+  height: 80px; /* Matches fixed header height */
+}
+
+/* =======================================
+-- 2. NAVBAR STYLING (V2) -- 
+=======================================
+*/
+.navbar-v2 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+}
+
+.logo img {
+  width: 110px;
+  cursor: pointer;
+}
+
+/* Hamburger Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 35px;
+  height: 28px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: var(--text-dark);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+/* Navigation Links and Dropdowns (Desktop) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-links li ul.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-default);
+  min-width: 150px;
+  padding: 5px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links li:hover > ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.nav-links li ul.dropdown-menu a {
+  color: var(--text-light);
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s;
+}
+
+.nav-links li ul.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Login Button */
+.login-btn button {
+  padding: 8px 18px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--button-secondary),
+    var(--button-accent)
+  );
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =======================================
+-- 3. FOOTER STYLING --
+=======================================
+*/
+.main-footer {
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  color: var(--text-dark);
+  padding-top: 60px;
+  font-family: "Inter", sans-serif;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-grid {
+  display: grid;
+  /* Define 4 columns for desktop */
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-column h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--link-hover);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.logo-image-placeholder {
+  width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.address,
+.contact-info {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.contact-info a {
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-info a:hover {
+  color: var(--link-hover);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  color: var(--text-dark); /* Ensure SVGs inherit a dark color */
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: var(--button-secondary);
+}
+
+.newsletter-section p {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-default);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.email-input::placeholder {
+  color: var(--text-color-muted);
+}
+
+.submit-button {
+  padding: 12px 20px;
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius-default);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.submit-button:hover {
+  background-color: var(--primary-color);
+}
+
+.copyright-bar {
+  background-color: rgba(0, 0, 0, 0.05); /* Light transparency */
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* =======================================
+-- 4. ABOUT PAGE (ABOUT2) STYLING -- 
+=======================================
+*/
+
+/* --- Hero Section --- */
+.hero-section {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: var(--text-light);
+  padding: 100px 20px 80px;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* --- History Section --- */
+.history-section {
+  padding: 80px 20px;
+  background-color: #ffffff;
+}
+
+.history-section h2 {
+  font-size: 2.2rem;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.history-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.history-content .text-block {
+  flex: 2;
+  font-size: 1rem;
+}
+
+.history-content .text-block p {
+  margin-bottom: 15px;
+}
+
+.history-img-style {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-placeholder {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+  top: 20px;
+}
+
+/* --- Vision & Mission Section --- */
+.vm-section {
+  background-color: var(--background-light);
+  padding: 60px 20px;
+}
+
+.vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.vm-card {
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.vm-card.mission {
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  border-left: 5px solid var(--button-accent);
+}
+
+.vm-card.vision {
+  background-color: #ffffff;
+  border-left: 5px solid var(--button-secondary);
+}
+
+.vm-card h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.vm-card.mission h3 {
+  color: var(--button-accent);
+}
+.vm-card.vision h3 {
+  color: var(--primary-color);
+}
+.vm-card.mission p {
+  color: var(--text-color-muted);
+}
+
+/* --- Values Section --- */
+.values-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.values-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.value-item {
+  padding: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.value-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--button-accent);
+}
+
+.value-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.value-item h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+/* =======================================
+-- 5. MOBILE/RESPONSIVE STYLES -- 
+=======================================
+*/
+
+/* --- Navbar Mobile Styles (Below 768px) --- */
+@media (max-width: 768px) {
+  .navbar-v2 {
+    padding: 12px 20px;
+  }
+
+  .navbar-v2 .hamburger {
+    display: flex;
+  }
+
+  .navbar-v2 .nav-links {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: linear-gradient(
+      135deg,
+      rgba(116, 185, 255, 0.95),
+      rgba(253, 121, 168, 0.95)
+    );
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    z-index: 999;
+  }
+
+  .navbar-v2 .nav-links.show {
+    display: flex;
+  }
+
+  .navbar-v2 .login-btn {
+    display: none;
+  }
+
+  /* --- Footer Mobile Styles (Tablet) --- */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand-info {
+    grid-column: span 2;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .newsletter-section {
+    grid-column: span 2;
+  }
+
+  /* --- ABOUT Page Adjustments --- */
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  .history-section h2 {
+    font-size: 1.8rem;
+  }
+  .vm-grid {
+    grid-template-columns: 1fr; /* Stack VM cards */
+  }
+}
+
+/* --- Mobile Phone Styles (Below 576px) --- */
+@media (max-width: 576px) {
+  .navbar-v2 {
+    padding: 12px 15px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  .footer-column h4 {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .brand-info {
+    grid-column: span 1;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .social-links {
+    justify-content: center;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .email-input,
+  .submit-button {
+    width: 100%;
+  }
+  .newsletter-section {
+    grid-column: span 1;
+  }
+
+  /* --- ABOUT Page Adjustments --- */
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  .values-grid {
+    grid-template-columns: 1fr; /* Stack values vertically */
+  }
+}
+
+/* -------------------------------------- */
+/* 6. Desktop Restoration */
+/* -------------------------------------- */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+  }
+  .hamburger {
+    display: none !important;
+  }
+  .login-btn {
+    display: block;
+  }
+}

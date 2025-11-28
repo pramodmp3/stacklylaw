@@ -1,0 +1,143 @@
+/*
+  404.css - Specific styles for the 404 Page Not Found
+  Assumes base styles (dark background, white text) are handled by style.css or inline.
+*/
+
+/* Ensure the body takes full height and has your default dark background if not in style.css */
+body {
+  background-color: #121212; /* Dark background */
+  color: #f0f0f0; /* Off-white text */
+  font-family: Arial, sans-serif; /* Consistent font */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex; /* Use flexbox for overall layout */
+  flex-direction: column; /* Stack navbar, content, footer vertically */
+  min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+/* Basic styling for any placeholder navbar/footer to keep page structure */
+#navbar,
+#footer {
+  width: 100%;
+  background-color: #1e1e1e; /* Slightly different dark shade */
+  padding: 15px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  color: #f0f0f0;
+  /* Minimal styling, assume your main navbar/footer CSS will override */
+}
+
+.not-found-container {
+  flex-grow: 1; /* Allows this container to take up available vertical space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.error-code {
+  font-size: 8em; /* Large, prominent 404 */
+  font-weight: 900;
+  color: #4caf50; /* Accent color for the error code */
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.error-message {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #f0f0f0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.error-description,
+.error-suggestion {
+  font-size: 1.1em;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 10px auto;
+  color: #b0b0b0; /* Slightly muted white for body text */
+}
+
+.actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px; /* Space between buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+  justify-content: center;
+}
+
+.home-button,
+.services-button {
+  display: inline-block;
+  padding: 12px 25px;
+  border: 2px solid #4caf50; /* Border with accent color */
+  border-radius: 5px;
+  color: #f0f0f0; /* White text for buttons */
+  background-color: transparent; /* Transparent background by default */
+  font-size: 1em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+.home-button:hover {
+  background-color: #4caf50; /* Solid accent color on hover */
+  color: #121212; /* Dark text on hover */
+}
+
+.services-button {
+  border-color: #b0b0b0; /* Slightly lighter border for secondary action */
+  color: #b0b0b0;
+}
+
+.services-button:hover {
+  background-color: #b0b0b0;
+  color: #121212;
+  border-color: #b0b0b0;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .error-code {
+    font-size: 6em;
+  }
+
+  .error-message {
+    font-size: 2em;
+  }
+
+  .error-description,
+  .error-suggestion {
+    font-size: 1em;
+    padding: 0 15px;
+  }
+
+  .actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 15px;
+  }
+
+  .home-button,
+  .services-button {
+    width: 80%; /* Make buttons wider */
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-code {
+    font-size: 5em;
+  }
+
+  .error-message {
+    font-size: 1.8em;
+  }
+}

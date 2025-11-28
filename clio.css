@@ -1,0 +1,858 @@
+/* CSS Variables for easy color management - CRM Theme: Purple and Orange */
+:root {
+  --primary-color: #7952b3; /* Deep Purple */
+  --accent-color: #fd7e14; /* Vibrant Orange */
+  --gradient-start: #7952b3;
+  --gradient-end: #e83e8c; /* Magenta/Pink */
+  --text-dark: #333;
+  --text-light: #fff;
+  --bg-light: #f7f3fb; /* Very light purple background */
+  --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --radius-default: 12px;
+  --success-color: #4caf50;
+  --danger-color: #ff4136;
+}
+
+/* Base Styles (The styles below are specific to the clio.html content area) */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}
+.hero-section {
+  padding-top: 100px !important;
+  margin-top: -80px !important;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 800;
+}
+
+/* --- Hero / Description Section --- */
+.hero-section {
+  text-align: center;
+  padding: 80px 0;
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+  color: var(--text-light);
+  border-radius: 0 0 var(--radius-default) var(--radius-default);
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-light);
+}
+
+.hero-section h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+  margin-bottom: 15px;
+  color: var(--text-light);
+}
+
+.hero-section p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  opacity: 0.9;
+}
+
+.btn-hero {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--accent-color);
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-hero:hover {
+  background-color: #e86b00; /* Darker orange */
+  transform: translateY(-2px);
+}
+
+/* --- Feature Details Section --- */
+.features-section {
+  padding: 40px 0 80px 0;
+}
+
+.features-section h2 {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  margin-bottom: 50px;
+  color: var(--text-dark);
+  position: relative;
+}
+
+.features-section h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--accent-color);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background-color: var(--text-light);
+  padding: 30px;
+  border-radius: var(--radius-default);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 5px solid var(--primary-color);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Apply distinct colors to different cards for a colorful look */
+.feature-card:nth-child(2) {
+  border-top-color: #17a2b8;
+} /* Cyan */
+.feature-card:nth-child(3) {
+  border-top-color: #fd7e14;
+} /* Orange */
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.icon-placeholder {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: var(--accent-color);
+  line-height: 1; /* Ensure vertical alignment is correct for emojis/symbols */
+}
+
+/* --- Pricing Section --- */
+.pricing-section {
+  padding: 80px 0;
+  background-color: var(--text-light);
+}
+
+.pricing-section h2 {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  margin-bottom: 50px;
+  color: var(--primary-color);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.price-card {
+  text-align: center;
+  padding: 40px 25px;
+  border-radius: var(--radius-default);
+  box-shadow: var(--shadow-card);
+  background-color: var(--bg-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.price-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.price-card h3 {
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.price-card .price {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.price-card .price small {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.7;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.price-card ul {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.price-card ul li {
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.price-card ul li:last-child {
+  border-bottom: none;
+}
+
+.price-card .check-icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: var(--success-color);
+}
+
+.price-card .disabled {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.price-card .disabled-icon {
+  color: var(--danger-color);
+}
+
+/* Featured Card (Business) */
+.price-card.featured {
+  background: linear-gradient(
+    160deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+  color: var(--text-light);
+  border: 2px solid var(--accent-color);
+  transform: scale(1.05); /* Make it stand out */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.price-card.featured .price,
+.price-card.featured h3 {
+  color: var(--text-light);
+}
+
+.price-card.featured ul li {
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+.price-card.featured .check-icon {
+  color: var(
+    --accent-color
+  ); /* Use accent color for checkmarks in featured card */
+}
+.price-card.featured .disabled-icon {
+  color: #ffc0cb; /* Light pink for contrast */
+}
+/* =======================================
+-- GLOBAL & THEME VARIABLES (from original) -- 
+=======================================
+*/
+:root {
+  /* Define primary colors based on the Navbar/Footer gradients */
+  --primary-color: #74b9ff; /* Light Blue/Violet (from gradient start) */
+  --secondary-color: #fd79a8; /* Pink/Red (from gradient end) */
+  --text-dark: #000;
+  --text-light: #fff;
+  --link-hover: #3498db;
+  --button-accent: #6c5ce7; /* Purple for Login Button */
+  --button-secondary: #00cec9; /* Teal for Login Button */
+  --footer-bg-dark: #22303e; /* Used for Copyright Bar */
+  --background-light: #f7f7f7; /* Used for dashboard/product card background */
+  --radius-default: 8px;
+  --max-width: 1200px;
+  --navbar-height: 80px;
+}
+
+/* -------------------------------------- */
+/* 1. Global Reset and Base Styles */
+/* -------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Poppins", sans-serif;
+  background-color: #fff;
+  padding-top: var(--navbar-height); /* Space for fixed header */
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+/* Reusable Container & Spacer */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.header-spacer {
+  height: var(--navbar-height); /* Matches fixed header height */
+}
+
+/* =======================================
+-- 2. NAVBAR STYLING (V2) -- 
+=======================================
+*/
+.navbar-v2 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+}
+
+.logo img {
+  width: 110px;
+  cursor: pointer;
+}
+
+/* Hamburger Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 35px;
+  height: 28px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: var(--text-dark);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+/* Navigation Links and Dropdowns (Desktop) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-links li ul.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-default);
+  min-width: 150px;
+  padding: 5px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links li:hover > ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.nav-links li ul.dropdown-menu a {
+  color: var(--text-light);
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s;
+}
+
+.nav-links li ul.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Login Button */
+.login-btn button {
+  padding: 8px 18px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--button-secondary),
+    var(--button-accent)
+  );
+  transform: scale(1.05);
+}
+.btn-primary,
+.btn-secondary {
+  background-color: orange;
+  height: 50px;
+  width: 300px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  padding: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =======================================
+-- 3. FOOTER STYLING --
+=======================================
+*/
+.main-footer {
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  color: var(--text-dark);
+  padding-top: 60px;
+  font-family: "Inter", sans-serif;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.footer-grid {
+  display: grid;
+  /* Define 4 columns for desktop */
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-column h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--link-hover);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.logo-image-placeholder {
+  width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.address,
+.contact-info {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.contact-info a {
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-info a:hover {
+  color: var(--link-hover);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  color: var(--text-dark);
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: var(--button-secondary);
+}
+
+.newsletter-section p {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-default);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.email-input::placeholder {
+  color: var(--text-color-muted);
+}
+
+.submit-button {
+  padding: 12px 20px;
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius-default);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.submit-button:hover {
+  background-color: var(--primary-color);
+}
+
+.copyright-bar {
+  background-color: rgba(0, 0, 0, 0.05); /* Light transparency */
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* =======================================
+-- 4. ANALYTICS DASHBOARD STYLING (Not directly relevant but kept for context) -- 
+=======================================
+*/
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  padding-top: var(--navbar-height);
+}
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: var(--text-light);
+  padding: 20px 0;
+  flex-shrink: 0;
+  position: fixed;
+  top: var(--navbar-height);
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 900;
+}
+.sidebar .logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+/* ... rest of dashboard styles removed for brevity as they are not used on the CLIO page ... */
+
+/* =======================================
+-- 6. MOBILE/RESPONSIVE STYLES (COMBINED) -- 
+=======================================
+*/
+
+/* --- Navbar Mobile Styles (Below 768px) --- */
+@media (max-width: 768px) {
+  /* Navbar fixed height adjustment for mobile view */
+  .navbar-v2 {
+    padding: 12px 20px;
+  }
+  .navbar-v2 .hamburger {
+    display: flex;
+  }
+  .navbar-v2 .nav-links {
+    display: none;
+    /* FIX: Position absolute/fixed to take full viewport width and cover content */
+    position: absolute;
+    top: var(--navbar-height); /* Align menu precisely below the fixed navbar */
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* New styles for the collapsed menu */
+    background: linear-gradient(
+      180deg,
+      rgba(116, 185, 255, 0.95),
+      rgba(253, 121, 168, 0.95)
+    ); /* Use the navbar gradient but make it more solid */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    flex-direction: column; /* FIX: Stack links vertically */
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    z-index: 999; /* Ensure it is below hamburger but above main content */
+  }
+
+  /* Style individual links inside the mobile menu */
+  .navbar-v2 .nav-links li {
+    width: 90%; /* Gives some horizontal padding */
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 5px 0;
+  }
+  .navbar-v2 .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .navbar-v2 .nav-links a {
+    color: var(--text-dark); /* Keep text dark for contrast on light gradient */
+    font-weight: 600;
+    padding: 15px 0;
+    width: 100%;
+    display: block;
+    font-size: 18px;
+  }
+  .navbar-v2 .nav-links a:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  /* Fix dropdowns within the mobile menu to stack */
+  .nav-links li ul.dropdown-menu {
+    position: static;
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.1
+    ); /* Slightly transparent dark background */
+    border-radius: 0;
+    width: 100%;
+    padding: 0;
+  }
+  .nav-links li:hover > ul.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    animation: none;
+  }
+  .nav-links li ul.dropdown-menu a {
+    padding: 10px 30px;
+    font-size: 16px;
+    color: var(--text-dark); /* Match parent link color */
+  }
+
+  .navbar-v2 .nav-links.show {
+    display: flex; /* FIX: Activates the vertical menu */
+  }
+  .navbar-v2 .login-btn {
+    display: none; /* Hide desktop login button */
+  }
+
+  /* --- Footer Mobile Styles (Tablet) --- */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand-info {
+    grid-column: span 2;
+  }
+  .newsletter-section {
+    grid-column: span 2;
+  }
+
+  /* --- Dashboard Mobile Styles (Tablet - Sidebar Hidden) --- */
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    margin-left: 0; /* Full width now */
+  }
+  .dashboard-container {
+    display: block;
+    padding-top: 0;
+  }
+  .content-breakdown {
+    grid-template-columns: 1fr;
+  }
+  .key-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Mobile Phone Styles (Below 576px) --- */
+@media (max-width: 576px) {
+  .main-content {
+    padding: 15px;
+  }
+  /* ... (rest of phone-specific styles kept) ... */
+
+  /* Footer full stack */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .brand-info {
+    grid-column: span 1;
+  }
+  .newsletter-section {
+    grid-column: span 1;
+  }
+  .newsletter-form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .email-input,
+  .submit-button {
+    width: 100%;
+  }
+}
+
+/* -------------------------------------- */
+/* 7. Desktop Restoration */
+/* -------------------------------------- */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+    position: static; /* Important: reset mobile overlay */
+    flex-direction: row;
+    /* Reset mobile-specific backgrounds and overrides */
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    box-shadow: none;
+    z-index: auto;
+  }
+  .nav-links li {
+    width: auto;
+    border-bottom: none;
+  }
+  .nav-links a {
+    color: var(--text-dark); /* Restore desktop text color */
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+  /* Restore desktop dropdown menu styles */
+  .nav-links li ul.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    background-color: rgba(30, 30, 30, 0.95);
+  }
+  .nav-links li ul.dropdown-menu a {
+    color: var(--text-light);
+  }
+
+  .hamburger {
+    display: none !important;
+  }
+  .login-btn {
+    display: block;
+  }
+}

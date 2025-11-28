@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar</title>
+    <link rel="stylesheet" href="navbar2.css" />
+  </head>
+  <body>
+    <nav class="navbar-v2">
+      <div class="logo">
+        <a href="./home2.html"><img src="./files/logo.png" alt="Logo" /></a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li class="has-dropdown">
+          <a href="home2.html">HOME ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">HOME1</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <a href="#">PRODUCTS ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="./clio.html">CLIO</a></li>
+            <li><a href="./mycase.html">MYCASE</a></li>
+            <li><a href="./analytics.html">ANALYTICS</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <a href="#">ABOUT US ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="./about2.html">ABOUT</a></li>
+            <li><a href="./members2.html">TEAM</a></li>
+          </ul>
+        </li>
+        <li><a href="./faq.html">FAQs</a></li>
+        <li><a href="./blog2.html">BLOG</a></li>
+        <li><a href="./contact2.html">CONTACT</a></li>
+      </ul>
+      <div class="login-btn">
+        <a href="./login2.html"><button id="loginButton">LOGIN</button></a>
+      </div>
+    </nav>
+    <script src="navbar2.js"></script>
+  </body>
+</html>

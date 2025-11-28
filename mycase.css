@@ -1,0 +1,684 @@
+/* =======================================
+-- GLOBAL & THEME VARIABLES -- 
+=======================================
+*/
+:root {
+  --primary-color: #74b9ff; /* Light Blue/Violet */
+  --secondary-color: #fd79a8; /* Pink/Red */
+  --text-dark: #000;
+  --text-light: #fff;
+  --link-hover: #3498db;
+  --button-accent: #6c5ce7; /* Purple */
+  --button-secondary: #00cec9; /* Teal */
+  --background-light: #f7f7f7;
+  --radius-default: 8px;
+  --max-width: 1200px;
+  --navbar-height: 80px;
+  --text-color-muted: #666;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+}
+
+/* -------------------------------------- */
+/* 1. Global Reset and Base Styles */
+/* -------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding-top: var(--navbar-height); /* Space for fixed header */
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.hero-section {
+  padding-top: 100px !important;
+  margin-top: -80px !important;
+}
+a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+/* Reusable Container & Spacer */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.header-spacer {
+  height: var(--navbar-height); /* Matches fixed header height */
+}
+
+/* Global Button Style */
+.btn-hero {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 700;
+  border-radius: 30px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* =======================================
+-- 2. NAVBAR STYLES --
+=======================================
+*/
+.navbar-v2 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+}
+
+.logo img {
+  width: 110px;
+  cursor: pointer;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 35px;
+  height: 28px;
+  z-index: 1001;
+}
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: var(--text-dark);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.nav-links li {
+  position: relative;
+}
+.nav-links a {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+.login-btn button {
+  padding: 8px 18px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+.login-btn button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--button-secondary),
+    var(--button-accent)
+  );
+  transform: scale(1.05);
+}
+
+/* Dropdown Styles (Crucial for interaction) */
+.nav-links li ul.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-default);
+  min-width: 150px;
+  padding: 5px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+.nav-links li:hover > ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease-in-out;
+}
+.nav-links li ul.dropdown-menu a {
+  color: var(--text-light);
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s;
+}
+.nav-links li ul.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* =======================================
+-- 3. FOOTER STYLES --
+=======================================
+*/
+.main-footer {
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  color: var(--text-dark);
+  padding-top: 60px;
+  font-family: "Inter", sans-serif;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-column h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--link-hover);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.logo-image-placeholder {
+  width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  color: var(--text-dark);
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: var(--button-secondary);
+}
+
+.copyright-bar {
+  background-color: rgba(0, 0, 0, 0.05); /* Light transparency */
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* --- Newsletter Form Styles (Copied for Footer) --- */
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-default);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.submit-button {
+  padding: 12px 20px;
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius-default);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+/* =======================================
+-- 4. MYCASE PRODUCT PAGE STYLING --
+=======================================
+*/
+
+/* --- Hero Section --- */
+.hero-section {
+  background: var(--text-dark);
+  color: var(--text-light);
+  padding: 100px 20px;
+  text-align: center;
+  /* Uses dark background from CLIO page for contrast */
+  background-color: #1a1a1a;
+  border-bottom: 5px solid var(--button-secondary);
+}
+
+.hero-section h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-hero {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 700;
+  border-radius: 30px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Feature Details Section --- */
+.features-section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: var(--background-light);
+}
+
+.features-section h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--button-accent); /* Purple accent line */
+  text-align: center;
+}
+
+.icon-placeholder {
+  font-size: 2.5rem;
+  color: var(--secondary-color); /* Pink/Red accent color for icons */
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  color: var(--text-color-muted);
+}
+
+/* --- Pricing Section --- */
+.pricing-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.pricing-section h2 {
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 50px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.price-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  transition: transform 0.3s;
+}
+
+.price-card.featured {
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.2),
+    rgba(253, 121, 168, 0.2)
+  );
+  transform: scale(1.05);
+  border-color: var(--button-accent);
+}
+
+.price-card h3 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+}
+
+/* Price Card List Items */
+.price-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.price-card li {
+  padding: 10px 0;
+  border-bottom: 1px dashed #eee;
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.check-icon {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  color: var(--success-color); /* Green checkmark */
+}
+
+.disabled {
+  color: var(--text-color-muted);
+  opacity: 0.7;
+}
+.disabled-icon {
+  color: var(--danger-color); /* Red X */
+}
+
+.btn-primary {
+  display: block;
+  padding: 12px 20px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 700;
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: transform 0.2s;
+  text-align: center;
+}
+
+.btn-secondary {
+  display: block;
+  padding: 12px 20px;
+  background-color: var(--background-light);
+  color: var(--primary-color);
+  font-weight: 700;
+  border: 2px solid var(--primary-color);
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+  text-align: center;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+/* =======================================
+-- 5. MOBILE/RESPONSIVE STYLES (Combined) -- 
+=======================================
+*/
+
+/* --- Navbar Mobile Styles (Below 768px) --- */
+@media (max-width: 768px) {
+  /* Fix hamburger display and initial nav-links state */
+  .navbar-v2 {
+    padding: 12px 20px;
+  }
+  .navbar-v2 .hamburger {
+    display: flex;
+  }
+  .navbar-v2 .nav-links {
+    display: none;
+
+    /* FIX: Set up the menu overlay */
+    position: absolute;
+    top: var(--navbar-height); /* Align menu precisely below the fixed navbar */
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    background: linear-gradient(
+      180deg,
+      rgba(116, 185, 255, 0.95),
+      rgba(253, 121, 168, 0.95)
+    );
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    flex-direction: column; /* Stack links vertically */
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    z-index: 999;
+  }
+
+  /* Style individual links inside the mobile menu */
+  .navbar-v2 .nav-links li {
+    width: 90%;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 5px 0;
+  }
+  .navbar-v2 .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .navbar-v2 .nav-links a {
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 15px 0;
+    width: 100%;
+    display: block;
+    font-size: 18px;
+  }
+
+  /* Dropdown Fix: Make submenus stack vertically and be visible */
+  .nav-links li ul.dropdown-menu {
+    position: static;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+  }
+  .nav-links li ul.dropdown-menu a {
+    color: var(--text-dark);
+  }
+
+  .navbar-v2 .nav-links.show {
+    display: flex; /* ACTIVATES THE FIXED VERTICAL MENU */
+  }
+  .navbar-v2 .login-btn {
+    display: none;
+  }
+
+  /* Footer Mobile Styles (Tablet) */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .brand-info {
+    grid-column: span 2;
+  }
+  .newsletter-section {
+    grid-column: span 2;
+  }
+
+  /* Pricing/Feature Mobile Adjustments */
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+  .features-section h2,
+  .pricing-section h2 {
+    font-size: 2rem;
+  }
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Mobile Phone Styles (Below 600px) --- */
+@media (max-width: 600px) {
+  .hero-section h1 {
+    font-size: 1.8rem;
+  }
+  .features-section h2,
+  .pricing-section h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Feature cards stack */
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Pricing card featured zoom removed */
+  .price-card.featured {
+    transform: scale(1);
+  }
+
+  /* Footer full stack */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+/* -------------------------------------- */
+/* 6. Desktop Restoration */
+/* -------------------------------------- */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    /* Reset mobile-specific overrides */
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    box-shadow: none;
+    z-index: auto;
+  }
+  .nav-links li {
+    width: auto;
+    border-bottom: none;
+  }
+  .nav-links a {
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+  /* Restore desktop dropdown menu styles */
+  .nav-links li ul.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    background-color: rgba(30, 30, 30, 0.95);
+  }
+  .nav-links li ul.dropdown-menu a {
+    color: var(--text-light);
+  }
+
+  .hamburger {
+    display: none !important;
+  }
+  .login-btn {
+    display: block;
+  }
+}

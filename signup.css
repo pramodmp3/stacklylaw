@@ -1,0 +1,172 @@
+/* --- CSS Variables (Must be included for standalone page) --- */
+:root {
+  --primary-color: #0a1931; /* Deep Navy Blue */
+  --accent-color: #ffd700; /* Vibrant Gold */
+  --text-color-dark: #333;
+  --text-color-muted: #666;
+  --background-light: #f7f7f7;
+  --success-color: #28a745;
+}
+
+/* Base Reset and Body Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-color-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Main Layout Wrapper --- */
+.signup-wrapper {
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+  margin: auto; /* Ensures centering if body min-height fails */
+}
+
+.signup-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* --- Header & Title --- */
+.logo-link {
+  display: block;
+  margin-bottom: 25px;
+}
+
+.logo-img {
+  height: 80px;
+  width: auto;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: var(--text-color-muted);
+  margin-bottom: 30px;
+}
+
+/* --- Form Styling --- */
+#signup-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.5);
+}
+
+/* --- Checkbox Group --- */
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.form-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  accent-color: var(--primary-color);
+}
+
+.form-checkbox label {
+  font-size: 0.85rem;
+  color: var(--text-color-muted);
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+.form-checkbox a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* --- Submit Button --- */
+.submit-btn {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  border: none;
+  padding: 14px 20px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.submit-btn:hover {
+  background-color: #1a345b; /* Darker navy for hover */
+  transform: translateY(-1px);
+}
+
+/* --- Login Prompt --- */
+.login-prompt {
+  margin-top: 25px;
+  font-size: 0.95rem;
+  color: var(--text-color-muted);
+}
+
+.login-prompt a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* --- Mobile Responsiveness (Ensures it looks good on small screens) --- */
+@media (max-width: 500px) {
+  .signup-card {
+    padding: 30px 20px;
+    box-shadow: none; /* Reduce visual weight on tiny screens */
+    border-radius: 0;
+  }
+  .signup-wrapper {
+    padding: 0;
+  }
+}

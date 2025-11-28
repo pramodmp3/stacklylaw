@@ -1,0 +1,309 @@
+/* --- CSS VARIABLES (Ensure consistent with theme) --- */
+:root {
+  --primary-color: #0a1931; /* Deep Navy Blue */
+  --accent-color: #ffd700; /* Vibrant Gold */
+  --text-color-light: #f0f0f0;
+  --text-color-dark: #333;
+  --input-bg: #fff;
+  --form-border: #d0d0d0;
+  --transition-speed: 0.3s;
+}
+
+/* --- BASE STYLES --- */
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color-dark);
+  line-height: 1.6;
+  background-color: #f7f7f7;
+}
+
+.login-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(
+    100vh - 160px
+  ); /* Account for fixed header/footer height approximation */
+  padding: 40px 20px;
+}
+
+/* Spacer for fixed header (must match height of your navbar) */
+.header-spacer {
+  height: 80px; /* Adjust this value to match your sticky navbar height */
+}
+
+/* --- LOGIN CONTAINER (Unique Split Design) --- */
+.login-container {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* --- LEFT PANEL: VISUAL / BRANDING --- */
+.login-visual-panel {
+  flex: 1; /* Takes up half the space */
+  background: var(--primary-color);
+  color: var(--text-color-light);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Subtle Geometric Pattern for Uniqueness */
+.login-visual-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at top right,
+      rgba(255, 215, 0, 0.05) 1%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(255, 215, 0, 0.08) 1%,
+      transparent 30%
+    );
+}
+
+.visual-content {
+  z-index: 1;
+  text-align: center;
+}
+
+.visual-logo {
+  display: block;
+  margin-bottom: 30px;
+  text-decoration: none;
+  color: var(--accent-color);
+  font-size: 2.2rem;
+  font-weight: 900;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.logo-text {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1.2;
+}
+
+.login-visual-panel h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
+.login-visual-panel p {
+  font-size: 1rem;
+  color: var(--text-color-muted);
+  margin-bottom: 40px;
+}
+
+.quote-box {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 15px;
+  margin-top: 30px;
+}
+
+.quote-text {
+  font-style: italic;
+  color: var(--text-color-light);
+}
+.quote-author {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  margin-top: 5px;
+}
+
+/* --- RIGHT PANEL: LOGIN FORM --- */
+.login-form-panel {
+  flex: 1; /* Takes up half the space */
+  background-color: var(--card-bg);
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+  font-size: 0.95rem;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--form-border);
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  font-size: 1rem;
+  color: var(--text-color-dark);
+  transition: border-color var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+/* Creative Gold Focus/Hover State */
+input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.forgot-link {
+  display: block;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-bottom: 30px;
+  transition: color var(--transition-speed);
+}
+
+.forgot-link:hover {
+  color: var(--accent-color);
+}
+
+/* Primary Login Button Styling (Vibrant Gold) */
+.login-btn {
+  width: 100%;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 15px 0;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.login-btn:hover {
+  background-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(255, 215, 0, 0.6);
+}
+
+/* Divider Style */
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--form-border);
+}
+
+.divider-text {
+  background: var(--card-bg);
+  padding: 0 10px;
+  position: relative;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* Secondary Signup Button (Navy/Outline) */
+.signup-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup-section p {
+  font-size: 1rem;
+  color: var(--text-color-dark);
+  margin-bottom: 15px;
+}
+
+.signup-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+}
+
+.signup-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+}
+
+.security-note {
+  font-size: 0.8rem;
+  text-align: center;
+  color: #999;
+  margin-top: 15px;
+}
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 900px) {
+  .login-container {
+    /* Stack the panels vertically on tablets */
+    flex-direction: column;
+    max-width: 500px;
+  }
+  .login-visual-panel {
+    /* Reduce padding and height on top panel */
+    padding: 40px 20px;
+    border-radius: 15px 15px 0 0;
+  }
+  .login-form-panel {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .login-main {
+    padding: 20px 10px;
+  }
+  .login-form-panel {
+    padding: 30px 20px;
+  }
+  .form-title {
+    font-size: 1.7rem;
+  }
+}

@@ -1,0 +1,732 @@
+/* =======================================
+-- GLOBAL & THEME VARIABLES -- 
+=======================================
+*/
+:root {
+  /* Define primary colors based on the Navbar/Footer gradients */
+  --primary-color: #74b9ff; /* Light Blue/Violet (from gradient start) */
+  --secondary-color: #fd79a8; /* Pink/Red (from gradient end) */
+  --text-dark: #000;
+  --text-light: #fff;
+  --link-hover: #3498db;
+  --button-accent: #6c5ce7; /* Purple for Login Button */
+  --button-secondary: #00cec9; /* Teal for Login Button */
+  --footer-bg-dark: #22303e; /* Used for Copyright Bar */
+  --background-light: #f7f7f7; /* Used for product card background */
+  --radius-default: 8px;
+  --max-width: 1200px;
+}
+
+/* -------------------------------------- */
+/* 1. Global Reset and Base Styles */
+/* -------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Poppins", sans-serif;
+  background-color: #fff;
+  padding-top: 80px; /* Space for fixed header */
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.hero-section {
+  padding-top: 100px !important;
+  margin-top: -80px !important;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+/* Reusable Container & Spacer */
+.section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.header-spacer {
+  height: 80px; /* Matches fixed header height */
+}
+
+/* =======================================
+-- 2. NAVBAR STYLING (V2) -- 
+=======================================
+*/
+.navbar-v2 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+}
+
+.logo img {
+  height: 70px;
+  width: auto;
+  cursor: pointer;
+}
+
+/* Hamburger Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 35px;
+  height: 28px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: var(--text-dark);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+/* Navigation Links and Dropdowns (Desktop) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-links li ul.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-default);
+  min-width: 150px;
+  padding: 5px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links li:hover > ul.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.nav-links li ul.dropdown-menu a {
+  color: var(--text-light);
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s;
+}
+
+.nav-links li ul.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Login Button */
+.login-btn button {
+  padding: 8px 18px;
+  background: linear-gradient(
+    135deg,
+    var(--button-accent),
+    var(--button-secondary)
+  );
+  color: var(--text-light);
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--button-secondary),
+    var(--button-accent)
+  );
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =======================================
+-- 3. FOOTER STYLING --
+=======================================
+*/
+.main-footer {
+  background: linear-gradient(
+    135deg,
+    rgba(116, 185, 255, 0.6),
+    rgba(253, 121, 168, 0.6)
+  );
+  color: var(--text-dark);
+  padding-top: 60px;
+  font-family: "Inter", sans-serif;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-grid {
+  display: grid;
+  /* Define 4 columns for desktop */
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-column h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--link-hover);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.logo-image-placeholder {
+  width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.address,
+.contact-info {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.contact-info a {
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-info a:hover {
+  color: var(--link-hover);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* --- Social Media SVGs --- */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  /* CRITICAL FIX: Explicitly set the base color (which is passed to the SVG via currentColor) */
+  color: var(--text-dark);
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  /* Sets the bright color for hover effect */
+  color: var(--button-secondary);
+}
+
+.newsletter-section p {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.email-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-default);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.email-input::placeholder {
+  color: var(--text-color-muted);
+}
+
+.submit-button {
+  padding: 12px 20px;
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius-default);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.submit-button:hover {
+  background-color: var(--primary-color);
+}
+
+.copyright-bar {
+  background-color: rgba(0, 0, 0, 0.05); /* Light transparency */
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* =======================================
+-- 4. HOME PAGE (HOME2) STYLING -- 
+=======================================
+*/
+
+/* --- Hero Section --- */
+.hero-section {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  background-color: pink; /* Very light blue background */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+/* Glass Animation */
+.glass-background-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.glass-square {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  animation: float 20s infinite linear;
+}
+
+.s1 {
+  width: 100px;
+  height: 100px;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+.s2 {
+  width: 150px;
+  height: 150px;
+  top: 70%;
+  left: 80%;
+  animation-delay: 4s;
+}
+.s3 {
+  width: 80px;
+  height: 80px;
+  top: 40%;
+  left: 40%;
+  animation-delay: 8s;
+}
+.s4 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  left: 90%;
+  animation-delay: 12s;
+}
+.s5 {
+  width: 180px;
+  height: 180px;
+  top: 85%;
+  left: 15%;
+  animation-delay: 16s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, 30px) rotate(10deg);
+  }
+  50% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  75% {
+    transform: translate(-20px, -30px) rotate(-10deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+/* --- Products Section --- */
+.products-section,
+.clients-section,
+.awards-section {
+  text-align: center;
+}
+
+.products-section h2,
+.clients-section h2,
+.awards-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background-color: var(--background-light);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+  border-top: 5px solid var(--secondary-color);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-icon {
+  font-size: 2.5rem;
+  color: var(--button-accent);
+  margin-bottom: 15px;
+  display: block;
+}
+
+.product-card h3 {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  color: var(--text-color-muted);
+  margin-bottom: 20px;
+}
+
+.product-card a {
+  color: var(--link-hover);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.section-divider {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  width: 80%;
+}
+
+/* --- Carousel Sections (Clients & Awards) --- */
+.logo-carousel-container {
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+  padding: 20px 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.logo-carousel {
+  display: inline-block;
+  animation: scroll-logos 40s linear infinite;
+  padding-right: 40px; /* Space between logo sets */
+}
+
+.logo-carousel img {
+  height: 50px;
+  width: auto;
+  margin: 0 40px;
+  vertical-align: middle;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: opacity 0.3s, filter 0.3s;
+}
+
+.logo-carousel img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* Ensure the animation loops seamlessly by translating exactly 50% */
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =======================================
+-- 5. MOBILE/RESPONSIVE STYLES -- 
+=======================================
+*/
+
+/* --- Navbar Mobile Styles (Below 768px) --- */
+@media (max-width: 768px) {
+  .navbar-v2 {
+    padding: 12px 20px; /* Reduced padding */
+  }
+
+  .navbar-v2 .hamburger {
+    display: flex;
+  }
+
+  .navbar-v2 .nav-links {
+    display: none;
+    position: absolute;
+    top: 80px; /* Align below the fixed header */
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    /* Re-applying the semi-transparent gradient on the collapsed menu */
+    background: linear-gradient(
+      135deg,
+      rgba(116, 185, 255, 0.95),
+      rgba(253, 121, 168, 0.95)
+    );
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    z-index: 999;
+  }
+
+  .navbar-v2 .nav-links.show {
+    display: flex;
+    list-style: none;
+  }
+
+  .navbar-v2 .nav-links li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Separator for mobile */
+  }
+
+  .navbar-v2 .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-v2 .nav-links li a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--text-dark);
+  }
+
+  /* Mobile Dropdowns */
+  .nav-links li ul.dropdown-menu {
+    position: static;
+    background: rgba(0, 0, 0, 0.05); /* Subtle background for sub-menu */
+  }
+
+  .nav-links li ul.dropdown-menu a {
+    color: var(--text-dark);
+    padding-left: 30px;
+  }
+
+  .navbar-v2 .login-btn {
+    display: none; /* Hide desktop login button */
+  }
+
+  /* --- Footer Mobile Styles (Tablet) --- */
+  .footer-grid {
+    /* Change to 2 columns on tablet */
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand-info {
+    grid-column: span 2;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .newsletter-section {
+    grid-column: span 2;
+  }
+
+  /* --- Home Page Specific Mobile Adjustments --- */
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .products-section h2,
+  .clients-section h2,
+  .awards-section h2 {
+    font-size: 2rem;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr; /* Stack products vertically */
+  }
+}
+
+/* --- Mobile Phone Styles (Below 576px) --- */
+@media (max-width: 576px) {
+  .navbar-v2 {
+    padding: 12px 15px;
+  }
+
+  .footer-grid {
+    /* Change to 1 column on mobile */
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  .footer-column h4 {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .brand-info {
+    grid-column: span 1;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .social-links {
+    justify-content: center;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .email-input,
+  .submit-button {
+    width: 100%;
+  }
+  .newsletter-section {
+    grid-column: span 1;
+  }
+
+  /* Home Page adjustments */
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+}
+
+/* -------------------------------------- */
+/* 5. Desktop Restoration */
+/* -------------------------------------- */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+  }
+  .hamburger {
+    display: none !important;
+  }
+  .login-btn {
+    display: block;
+  }
+}
